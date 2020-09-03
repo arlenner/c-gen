@@ -1,0 +1,36 @@
+.container {
+  width: 270px;
+  height: 40px;
+  position: relative;
+  margin: 6px;
+  color: #f0f0f0;
+}
+
+.label {
+  position: absolute;
+  top: -8px;
+  left: 12.5%;
+}
+
+.control {
+  position: absolute;
+  top: 12px;
+  background-color: #595959;
+  height: 16px;
+  width: 16px;
+}
+
+.middle {
+  position: absolute;
+  height: 10px;
+  top: 15px;
+  background-color: orange;
+}
+
+.track {
+  position: absolute;
+  height: 8px;
+  top: 16px;
+  background-color: #ababab;
+  width: 100%;
+}

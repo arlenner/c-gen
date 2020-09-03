@@ -1,0 +1,27 @@
+
+
+.dispenser-container
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: row
+    height: 40vh
+    width: 90vw
+
+
+.color-swatch
+    height: 66%
+    &:nth-child(1)
+        border-radius: 1.2em 0 0 1.2em
+    &:nth-last-child(1)
+        border-radius: 0 1.2em 1.2em 0
+        
+        
+        
+[data-color]
+    &:hover
+        display: flex
+        align-items: center
+        justify-content: center
+        &::after                        
+            content: attr(data-color)
