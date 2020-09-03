@@ -159,7 +159,9 @@ export const ControlGroup = () => {
             const {activeL, activeR, right, left, refs: { l, r, m } } = v
             if(activeR) {
                 //cap relX between left control pos and end of track (255px)
-                const relX    = Math.max(l.current.offsetLeft, Math.min(e.clientX - container.current.offsetLeft, 255))
+                const relX =   
+                    e.clientX   ? Math.max(l.current.offsetLeft, Math.min(e.clientX - container.current.offsetLeft, 255))
+                                : Math.max(l.current.offsetLeft, Math.min(e.pageX - container.current.offsetLeft, 255))
                 
                 dispatch(['SET_'+k.toUpperCase(), { right: relX, left }])
                 r.current.style.left  = relX + 'px'
@@ -167,7 +169,9 @@ export const ControlGroup = () => {
             }
             if(activeL) {
                 //cap relX between start of track and the right control pos
-                const relX = Math.max(0, Math.min(e.clientX - container.current.offsetLeft, r.current.offsetLeft))
+                const relX =   
+                    e.clientX   ? Math.max(l.current.offsetLeft, Math.min(e.clientX - container.current.offsetLeft, 255))
+                                : Math.max(l.current.offsetLeft, Math.min(e.pageX - container.current.offsetLeft, 255))
 
                 dispatch(['SET_'+k.toUpperCase(), { right, left: relX }])
 
