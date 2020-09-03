@@ -188,8 +188,10 @@ export const ControlGroup = () => {
                 ref={container}
                 className='group-container'
                 onMouseMove={onMouseMove}
+                onTouchMove={onMouseMove}
                 onMouseUp={onMouseEventEnd}
-                onMouseLeave={onMouseEventEnd}>
+                onMouseLeave={onMouseEventEnd}
+                onTouchEnd={onMouseEventEnd}>
                 <ColorDispenser state={state} />
                 <div className="button-container">
                     <button className="number-button"

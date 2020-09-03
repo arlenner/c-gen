@@ -46,7 +46,9 @@ export const ColorController = ({ store: {dispatch}, label = ''}) => {
                             left: `64px`
                         }}
                         onMouseDown={onMouse('LEFT')}
-                        onMouseUp={onMouse('LEFT')}></button>
+                        onMouseUp={onMouse('LEFT')}
+                        onTouchStart={onMouse('LEFT')}
+                        onTouchEnd={onMouse('LEFT')}></button>
                     <button 
                         ref={rightControl}
                         className="control"
@@ -54,7 +56,9 @@ export const ColorController = ({ store: {dispatch}, label = ''}) => {
                             left: `192px`
                         }}
                         onMouseDown={onMouse('RIGHT')}
-                        onMouseUp={onMouse('RIGHT')}></button>
+                        onMouseUp={onMouse('RIGHT')}
+                        onTouchStart={onMouse('RIGHT')}
+                        onTouchEnd={onMouse('RIGHT')}></button>
                 </div>
             </div>
         </>
