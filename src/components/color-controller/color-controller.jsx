@@ -19,6 +19,10 @@ export const ColorController = ({ store: {dispatch}, label = ''}) => {
     //use label to determine role
     useEffect(() =>  dispatch([label[0].toUpperCase()+'_REFS', getRefs()]), [])
 
+    const onTouch = part => e => {
+        e.preventDefault()
+        dispatch([label[0].toUpperCase() + '_' + part])
+    }
     //part is 'LEFT' or 'RIGHT'
     const onMouse = part => _ => {  
         dispatch([label[0].toUpperCase() + '_' + part]) 
@@ -47,8 +51,8 @@ export const ColorController = ({ store: {dispatch}, label = ''}) => {
                         }}
                         onMouseDown={onMouse('LEFT')}
                         onMouseUp={onMouse('LEFT')}
-                        onTouchStart={onMouse('LEFT')}
-                        onTouchEnd={onMouse('LEFT')}></button>
+                        onTouchStart={onTouch('LEFT')}
+                        onTouchEnd={onTouch('LEFT')}></button>
                     <button 
                         ref={rightControl}
                         className="control"
@@ -57,8 +61,8 @@ export const ColorController = ({ store: {dispatch}, label = ''}) => {
                         }}
                         onMouseDown={onMouse('RIGHT')}
                         onMouseUp={onMouse('RIGHT')}
-                        onTouchStart={onMouse('RIGHT')}
-                        onTouchEnd={onMouse('RIGHT')}></button>
+                        onTouchStart={onTouch('RIGHT')}
+                        onTouchEnd={onTouch('RIGHT')}></button>
                 </div>
             </div>
         </>
