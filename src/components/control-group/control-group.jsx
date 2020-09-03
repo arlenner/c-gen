@@ -170,8 +170,8 @@ export const ControlGroup = () => {
             if(activeL) {
                 //cap relX between start of track and the right control pos
                 const relX =   
-                    e.clientX   ? Math.max(l.current.offsetLeft, Math.min(e.clientX - container.current.offsetLeft, 255))
-                                : Math.max(l.current.offsetLeft, Math.min(e.pageX - container.current.offsetLeft, 255))
+                    e.clientX   ? Math.max(0, Math.min(e.clientX - container.current.offsetLeft, r.current.offsetLeft))
+                                : Math.max(0, Math.min(e.pageX - container.current.offsetLeft, r.current.offsetLeft))
 
                 dispatch(['SET_'+k.toUpperCase(), { right, left: relX }])
 
