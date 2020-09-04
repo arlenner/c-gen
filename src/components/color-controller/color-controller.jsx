@@ -20,7 +20,6 @@ export const ColorController = ({ store: {dispatch}, label = ''}) => {
     useEffect(() =>  dispatch([label[0].toUpperCase()+'_REFS', getRefs()]), [])
 
     const onTouch = part => e => {
-        e.preventDefault()
         dispatch([label[0].toUpperCase() + '_' + part])
     }
     //part is 'LEFT' or 'RIGHT'

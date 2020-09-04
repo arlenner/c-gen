@@ -144,34 +144,35 @@ const reducer = (acc, [kind, data]) =>
                         }
 :   /*default*/         acc
 
+
+const getRelX = (e, target) => e.touches? e.touches[0].pageX - target.getBoundingClientRect().left
+                                        : e.clientX - target.getBoundingClientRect().left
+
 //Control Group component. Contains and manages state of controls.
 export const ControlGroup = () => {
 
     const container = useRef(null)
 
     const [state, dispatch] = useReducer(reducer, DEFAULT)
-
+    
     const onMouseMove = e => {
         if(!container.current) return //early out if container ref isn't ready yet on mouse move...
 
         Object.entries(state).forEach(([k, v]) => {
             if(k === 'number') return
-            const {activeL, activeR, right, left, refs: { l, r, m } } = v
+            const { activeL, activeR, right, left, refs: { l, r, m } } = v
             if(activeR) {
                 //cap relX between left control pos and end of track (255px)
-                const relX =   
-                    e.clientX   ? Math.max(l.current.offsetLeft, Math.min(e.clientX - container.current.offsetLeft, 255))
-                                : Math.max(l.current.offsetLeft, Math.min(e.pageX - container.current.offsetLeft, 255))
-                
+                const relX = Math.max(left, Math.min(getRelX(e, container.current), 255))
+
                 dispatch(['SET_'+k.toUpperCase(), { right: relX, left }])
                 r.current.style.left  = relX + 'px'
                 m.current.style.width = relX - left + 'px'
             }
             if(activeL) {
                 //cap relX between start of track and the right control pos
-                const relX =   
-                    e.clientX   ? Math.max(0, Math.min(e.clientX - container.current.offsetLeft, r.current.offsetLeft))
-                                : Math.max(0, Math.min(e.pageX - container.current.offsetLeft, r.current.offsetLeft))
+                const relX = Math.max(0, Math.min(getRelX(e, container.current), right))
+                                      
 
                 dispatch(['SET_'+k.toUpperCase(), { right, left: relX }])
 
